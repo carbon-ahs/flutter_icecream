@@ -4,17 +4,19 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:icecream/models/icecream.dart';
 
 class IcecreamView extends StatelessWidget {
   IcecreamView({super.key});
 
-  Future<Map<String, dynamic>> loadIcecreams() async {
+  // Future<IcecreamData> loadIcecreams() async {
+  Future<List<Icecream>?> loadIcecreams() async {
     // final Map<String, dynamic>? decodedIcrecreams;
     final rawIcecreams =
         await rootBundle.loadString("assets/data/icecream.json");
     await Future.delayed(Duration(seconds: 1));
-    final decodedIcrecreams = jsonDecode(rawIcecreams);
-    return decodedIcrecreams;
+    final icecreams = icecreamDataFromJson(rawIcecreams);
+    return icecreams.icecreams;
   }
 
   @override
@@ -45,8 +47,8 @@ class IcecreamView extends StatelessWidget {
                     future: loadIcecreams(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.done) {
-                        final icecreams = snapshot.data as Map<String, dynamic>;
-                        return Text(icecreams["icecreams"][0]["flovor"]);
+                        final icecreams = snapshot.data;
+                        return Text(icecreams!.first.flovor);
                       } else {
                         return Center(
                           child: CircularProgressIndicator.adaptive(),

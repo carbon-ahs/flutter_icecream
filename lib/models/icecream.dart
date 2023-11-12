@@ -1,5 +1,10 @@
 import 'dart:convert';
 
+IcecreamData icecreamDataFromJson(String str) =>
+    IcecreamData.fromJson(json.decode(str));
+
+String icecreamDataToJson(IcecreamData data) => json.encode(data.toJson());
+
 class IcecreamData {
   List<Icecream>? icecreams;
 
