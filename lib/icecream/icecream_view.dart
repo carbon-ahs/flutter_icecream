@@ -49,19 +49,20 @@ class _IcecreamViewState extends State<IcecreamView> {
             style: Theme.of(context).textTheme.bodySmall,
           ),
           Expanded(
-              child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                decodedIcrecreams != null
-                    ? Text("Icecream loaded")
-                    : Center(
-                        child: CircularProgressIndicator.adaptive(),
-                      ),
-              ],
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  decodedIcrecreams != null
+                      ? Text("Icecream loaded")
+                      : Center(
+                          child: CircularProgressIndicator.adaptive(),
+                        ),
+                ],
+              ),
             ),
-          ))
+          )
         ],
       ),
     );

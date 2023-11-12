@@ -1,31 +1,20 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables, unused_local_variable
 
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class IcecreamView extends StatefulWidget {
-  const IcecreamView({super.key});
+class IcecreamView extends StatelessWidget {
+  IcecreamView({super.key});
 
-  @override
-  State<IcecreamView> createState() => _IcecreamViewState();
-}
-
-class _IcecreamViewState extends State<IcecreamView> {
-  Map<String, dynamic>? decodedIcrecreams;
-  @override
-  void initState() {
-    super.initState();
-    loadIcecreams();
-  }
-
-  Future<void> loadIcecreams() async {
+  Future<Map<String, dynamic>> loadIcecreams() async {
+    // final Map<String, dynamic>? decodedIcrecreams;
     final rawIcecreams =
         await rootBundle.loadString("assets/data/icecream.json");
     await Future.delayed(Duration(seconds: 1));
-    decodedIcrecreams = jsonDecode(rawIcecreams);
-    setState(() {});
+    final decodedIcrecreams = jsonDecode(rawIcecreams);
+    return decodedIcrecreams;
   }
 
   @override
@@ -47,17 +36,26 @@ class _IcecreamViewState extends State<IcecreamView> {
             style: Theme.of(context).textTheme.bodySmall,
           ),
           Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                if (decodedIcrecreams != null)
-                  Text("IceCreams are here")
-                else
-                  Center(
-                    child: CircularProgressIndicator.adaptive(),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  FutureBuilder(
+                    future: loadIcecreams(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        final icecreams = snapshot.data as Map<String, dynamic>;
+                        return Text(icecreams["icecreams"][0]["flovor"]);
+                      } else {
+                        return Center(
+                          child: CircularProgressIndicator.adaptive(),
+                        );
+                      }
+                    },
                   ),
-              ],
+                ],
+              ),
             ),
           )
         ],
