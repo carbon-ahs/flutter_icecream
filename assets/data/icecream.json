@@ -24,16 +24,29 @@
                 {"name": "Heavy Cream", "quantity": "2 cups"}
             ]
         },
+        {
+    "flovor": "Cone",
+    "description": "Cone with biscute",
+    "toppings": ["Whipped Creame", "Caramel"],
+    "price": 3.99,
+    "images":"https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "ingrediences": [
+        {"name": "Cocoa Powder", "quantity": "1/2 cups"},
+        {"name": "Egg", "quantity": "4"},
+        {"name": "Heavy Cream", "quantity": "2 cups"},
+        {"name": "Suger", "quantity": "3/4 cup"}
+    ]
+},
                 {
-            "flovor": "Cone",
-            "description": "Cone with biscute",
-            "toppings": ["Whipped Creame", "Caramel"],
+            "flovor": "Cup",
+            "description": "Plastic Cup with biscute",
+            "toppings": ["Creame", "Caramel"],
             "price": 3.99,
-            "images":"https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "images":"https://placehold.co/600x400/png",
             "ingrediences": [
                 {"name": "Cocoa Powder", "quantity": "1/2 cups"},
                 {"name": "Egg", "quantity": "4"},
-                {"name": "Heavy Cream", "quantity": "2 cups"},
+                {"name": "Cream", "quantity": "2 cups"},
                 {"name": "Suger", "quantity": "3/4 cup"}
             ]
         }

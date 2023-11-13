@@ -36,6 +36,7 @@ class IcecreamView extends StatelessWidget {
             style: Theme.of(context).textTheme.bodySmall,
           ),
           Expanded(
+            flex: 6,
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -51,9 +52,10 @@ class IcecreamView extends StatelessWidget {
                           height: MediaQuery.sizeOf(context).width / 3,
                           child: ListView.builder(
                               scrollDirection: Axis.horizontal,
-                              itemCount: icecreams!.length,
+                              itemCount:
+                                  icecreams != null ? icecreams.length : 0,
                               itemBuilder: (context, index) {
-                                final icecream = icecreams[index];
+                                final icecream = icecreams![index];
                                 return SizedBox(
                                   width: 200,
                                   child: Card(
@@ -66,13 +68,17 @@ class IcecreamView extends StatelessWidget {
                                       child: Stack(
                                         fit: StackFit.expand,
                                         children: [
-                                          Image.network(
-                                            icecream.image!,
-                                            fit: BoxFit.cover,
-                                            color:
-                                                Colors.orange.withOpacity(0.9),
-                                            colorBlendMode: BlendMode.color,
-                                          ),
+                                          icecream.image == ''
+                                              ? Image.network(
+                                                  "https://placehold.co/600x400/png")
+                                              : Image.network(
+                                                  icecream.image.toString(),
+                                                  fit: BoxFit.cover,
+                                                  color: Colors.orange
+                                                      .withOpacity(0.9),
+                                                  colorBlendMode:
+                                                      BlendMode.color,
+                                                ),
                                         ],
                                       ) //Text(icecream.flovor),
                                       ),
